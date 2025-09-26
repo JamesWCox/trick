@@ -24,6 +24,12 @@ namespace Trick {
             /** Number of significant digits to use in time print.\n */
             int num_digits ;
 
+            /** Number of left digits to use in floating point formatting.\n */
+            int radix_left ;
+
+            /** Number of right digits to use in floating point formatting.\n */
+            int radix_right ;
+
             /** Print format that accomodates enough significant digits to handle tics_per_sec */
             char print_format[64] ;
 
@@ -31,6 +37,11 @@ namespace Trick {
              @brief sets the print format
              */
             void set_print_format() ;
+			
+            /**
+             @brief sets the print format 
+             */
+            void set_print_format(int digits, int left, int right) ;
 
         public:
 
@@ -41,7 +52,6 @@ namespace Trick {
              @brief The constructor.
              */
             MessagePublisher() ;
-            virtual ~MessagePublisher();
 
             /**
              @brief Initialization job.  Sets tics_per_sec and print format.
@@ -67,7 +77,7 @@ namespace Trick {
              @param message - the text of the message
              @return always 0
              */
-            virtual int publish(int level, std::string message) ;
+            int publish(int level, std::string message) ;
 
             /**
              @brief gets the subscriber from the list
